@@ -32,10 +32,10 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
+Route::any('/', 'frontend.home@index');
+Route::any('fineprint', 'frontend.home@fine_print');
+
+Route::any('view', array('uses' => 'frontend.twitline@view'));
 
 /*
 |--------------------------------------------------------------------------

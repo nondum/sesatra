@@ -1,3 +1,28 @@
+# [Se-Sa-Tra](http://sesatra.org ?? ) - Service Satisfaction Tracker
+
+Sesatra is an open project with the purpose of tracking the sentiments of consumers of major services.
+The project was started with Zambia as the casestudy, due to the high level of disatisfaction from consumers of the services from major providers of the most basic services eg: ZESCO (Zambia Electricity Supply Corperation), and a prevalent poor understanding of what consumer rights individuals have.
+
+## Installation
+if you're using a windows maching make sure you have php.exe in your environment variables.
+create a database for the application.
+modify the files config/application.php & config/database.php to reflect your own local settings.
+
+launch a command/terminal window in the root of your installation and run the below commands.
+
+- php artisan migration
+
+- php artisan migration twitsearch
+
+(instructions for using the Laravel Arisan CLI can be found [here](http://laravel.com/docs/artisan/commands))
+
+the application should now be ready to use.
+
+## License
+
+Sesatra is open-sourced software licensed under the [MIT License](http://opensource.org/licenses/MIT).
+
+
 # [Laravel](http://laravel.com) - A PHP Framework For Web Artisans
 
 Laravel is a clean and classy framework for PHP web development. Freeing you
@@ -6,61 +31,6 @@ simple, expressive syntax. Development should be a creative experience that you
 enjoy, not something that is painful. Enjoy the fresh air.
 
 [Official Website & Documentation](http://laravel.com)
-
-## Feature Overview
-
-- Simple routing using Closures or controllers.
-- Views and templating.
-- Driver based session and cache handling.
-- Database abstraction with query builder.
-- Authentication.
-- Migrations.
-- PHPUnit Integration.
-- A lot more.
-
-## A Few Examples
-
-### Hello World:
-
-```php
-<?php
-
-Route::get('/', function()
-{
-	return "Hello World!";
-});
-```
-
-### Passing Data To Views:
-
-```php
-<?php
-
-Route::get('user/(:num)', function($id)
-{
-	$user = DB::table('users')->find($id);
-
-	return View::make('profile')->with('user', $user);
-});
-```
-
-### Redirecting & Flashing Data To The Session:
-
-```php
-<?php
-
-return Redirect::to('profile')->with('message', 'Welcome Back!');
-```
-
-## Contributing to Laravel
-
-Contributions are encouraged and welcome; however, please review the Developer
-Certificate of Origin in the "license.txt" file included in the repository. All
-commits must be signed off using the `-s` switch.
-
-```bash
-git commit -s -m "this commit will be signed off automatically!"
-```
 
 ## License
 

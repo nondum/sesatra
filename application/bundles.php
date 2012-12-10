@@ -36,5 +36,7 @@
 return array(
 
 	'docs' => array('handles' => 'docs'),
+    // to access the twitsearch bundle the URI "tweets" is used
+    'twitsearch' => array('auto' => true, 'handles' => 'tweets')
 
 );
