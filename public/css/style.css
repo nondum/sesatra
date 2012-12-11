@@ -1,6 +1,6 @@
 div.alert { margin-top:10px; margin-bottom:10px; }
 div.alert p { margin:0; }
-body{background-image: url('../../img/wild_oliva.png');color:#fff;}
+body{background-image: url('../img/navy_blue.png');color:#fff;}
 
 .container {margin: 0 auto;max-width: 760px;}
 .container > hr {margin: 0;}
@@ -20,15 +20,15 @@ color: inherit;
 text-rendering: optimizelegibility;
 }
 .score strong{font-size: 35px;}
-.tweet{padding:3px;min-width:80%;max-width:80%;margin:0 auto;}
+.tweet{padding:3px;min-height:50px;min-width:80%;max-width:80%;margin:0 auto 20px;position:relative;}
 .tweet p, footer p{margin:0;}
-.tweet_img{float:left;width:48px;height:48px;}
+.tweet img{top:8px;left:0px;width:48px;height:48px; position:absolute;}
 .tweet_img img{border:none;}
 .tweet_right{float:left;min-width:250px;max-width:65%;overflow:hidden;padding-right:5px;}
 .tweet_name{padding-left:10px;}
 .tweet_date {margin-top:2px;float:right;text-decoration:none;max-width:20%;text-align:right;}
-.tweet_screen_name{float:left;}
-.tweet_text{margin-left:48px;}
+.tweet_screen_name a:hover{text-decoration:none;font-style:normal;}
+.tweet_text{margin-left:55px;}
 footer{margin:10px 0 0 0;}
 
 .marketing {margin: 40px auto;width:80%;}

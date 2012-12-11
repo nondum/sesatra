@@ -17,7 +17,6 @@
 @endsection
 
 @section('content')
-	<div class="container">
 		<div class="jumbotron">
 	        <h1>Service Satisfaction Tracker</h1>
 	        <p class="lead">An open-project tracking consumer satisfaction of major service providers in Zambia.</p>
@@ -38,48 +37,30 @@
         </div>
       </div>
 
-	@if ($tweets)
+	@if ($tweets->total > 0)
 		@foreach($tweets->results as $twt)
 		<div class="row">
 			<div class="tweet row">
-			    <div class="tweet_img">
-			        <img src="{{ $twt->userpic }}">
-			    </div>
-			    <!--div class="tweet_right">
-			    </div-->
-			    	<div class="tweet_screen_name">
-			        	<p>{{ $twt->username }}</p>
-			        	<p>@{{ $twt->userhandle }}</p>
-			    	</div>
-			    	<div class="tweet_date">
-				        <p>{{ $twt->tweettime }}</p>
-			    	</div>
-			</div>
-			<div class="tweet row">
+		    	<div class="tweet_date">
+			        <p>{{ $twt->tweettime }}</p>
+		    	</div>
 		    	<div class="tweet_text">
+		    		<a href="http://twitter.com{{ $twt->username }}">
+			        	<img src="{{ $twt->userpic }}">
+			        	<span><strong>{{ $twt->username }}</strong></span>  <span class="tweet_screen_name"><small>@{{ $twt->userhandle }}</small></span>
+			        </a>
 		        	<p>{{ $twt->tweet }}</p>
 		    	</div>
 		    </div>
 	    </div>
-
-		        <!--p><a class="btn" href="#">View details &raquo;</a></p-->
-
 		@endforeach
-
 	    <div class="row pagination-centered">
 			{{ $tweets->links(1) }}
 		</div>
+	@else
+		<p class="lead">There no tweets to display. Either no data has been collected or there has been a problem. Sorry.</p>
 	@endif
 
-
-
-        
-		<hr>
-        <footer>
-            <p>Conceived by @twoSeats</p>
-            <p>Built using @twbootstrap &amp; @laravelphp</p>
-        </footer>
-    </div> <!-- /container -->
 @endsection
 
 @section('endscripts')

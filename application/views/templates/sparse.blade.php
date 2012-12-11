@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rolodecks Admin">
-    <meta name="author" content="Twaambo Haamucenje, Rolodecks">
+    <meta name="description" content="Service Satisfaction Tracker">
+    <meta name="author" content="Twaambo Haamucenje">
 	
 	{{ HTML::style('css/bootstrap.css') }}
 	<style>

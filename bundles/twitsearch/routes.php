@@ -4,7 +4,8 @@ Route::get('(:bundle)', function()
 {
     return 'Welcome to the Admin bundle!';
 });
-Route::get('(:bundle)/run', 'twitsearch::tweets@populate');
+Route::get('(:bundle)/run', 'twitsearch::tweets@run');
+Route::get('(:bundle)/populate', 'twitsearch::tweets@populate');
 // Route::post('(:bundle)/preview', 'gravvy::preview@preview');
 
 /*

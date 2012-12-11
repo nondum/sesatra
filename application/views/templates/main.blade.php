@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rolodecks Admin">
-    <meta name="author" content="Twaambo Haamucenje, Rolodecks">
+    <meta name="description" content="Service Satisfaction Tracker">
+    <meta name="author" content="Twaambo Haamucenje">
 	
 	{{ HTML::style('css/bootstrap.css') }}
 	<style>
@@ -49,9 +49,19 @@
 		  </div>
 		</div>
     @yield_section
-	
-	@yield('content')
 
+	<div class="container">
+
+	@yield('content')
+        
+		<hr>
+        <footer>
+            <p>Conceived by <a href="http://twitter.com/twoseats">@twoSeats</a></p>
+            <p>Built using <a href="http://twitter.com/twoseats">@laravelphp</a> &amp; <a href="http://twitter.com/twoseats">@twbootstrap</a></p>
+            <p>Check out Se-Sa-Tra on <a href="http://github.com">GitHub</a></p>
+            <br><p><small>read the {{ HTML::link('fineprint', 'fine print') }}</small></p>
+        </footer>
+    </div> <!-- /container -->
 	@yield('modals')
 	
 	@section('endscripts')

@@ -17,11 +17,10 @@
 @endsection
 
 @section('content')
-	<div class="container">
 		<div class="jumbotron">
-	        <h1>Service Satisfaction Tracker</h1>
-	        <p class="lead">An open-project tracking consumer satisfaction of major service providers in Zambia.</p>
-	      </div>
+      <h1>Service Satisfaction Tracker</h1>
+      <p class="lead">An open-project tracking consumer satisfaction of major service providers in Zambia.</p>
+    </div>
 		<div class="marketing">
 			<p>Welcome to <b>Se-Sa-Tra</b>. This project leverages the vocal platform Twitter to gather, process &amp; present information about the level of satisfaction of the common consumer in the <b>Zambian</b> market. The project has so far processed <strong>{{ $counts['total']}}</strong> <b>views</b>, <b>opinions</b> &amp; <b>experiences</b> of everyday individuals.</p>
 		</div>
@@ -41,15 +40,6 @@
         </div>
       </div>
 
-        
-		<hr>
-        <footer>
-            <p>Conceived by <a href="http://twitter.com/twoseats">@twoSeats</a></p>
-            <p>Built using <a href="http://twitter.com/twoseats">@laravelphp</a> &amp; <a href="http://twitter.com/twoseats">@twbootstrap</a></p>
-            <p>Check out Se-Sa-Tra on <a href="http://github.com">GitHub</a></p>
-            <br><p><small>read the {{ HTML::link('fineprint', 'fine print') }}</small></p>
-        </footer>
-    </div> <!-- /container -->
 @endsection
 
 @section('endscripts')

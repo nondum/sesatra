@@ -4,26 +4,23 @@ use \Eloquent;
 
 class Importer{
 
-    public static function runTweetImport(){
-        $filelist = array(
-'results2012-12-06 14_14_42.json',
-'results2012-12-06 14_31_38.json',
-'results2012-12-06 15_32_51.json',
-'results2012-12-06 15_58_59.json',
-'results2012-12-06 16_18_09.json',
-'results2012-12-06 16_47_59.json',
-'results2012-12-06 17_02_07.json'
-        );
+    public static function runTweetImport($data = false){
     
         $jsondata = array();
 
         // echo json_decode( file_get_contents('..\\'.$filelist[0]) );
-        
-        foreach ($filelist as $file => $filename) {
-            echo '..\\'.$filename.'<br>';
+        if($data == false){
+            $filelist = array(
+                'results2012-12-06 17_02_07.json',
+                'results2012-12-10 14_44_14.json',
+                'results2012-12-10 15_08_16.json'
+            );
 
-            $jsondata[] = json_decode( file_get_contents('..\\'.$filename) );
-        }
+            foreach ($filelist as $file => $filename) {
+                echo '..\\'.$filename.'<br>';
+    
+                $jsondata[] = json_decode( file_get_contents('..\\'.$filename) );
+            }
             echo 'CWD: '.getcwd().'<br>';
             echo 'size of jsondata: '.sizeof($jsondata);
 
@@ -64,6 +61,33 @@ class Importer{
                     $tweetids[] = $tweet->id;
                 }
             }
+        }else{
+            $jsondata = $data;
+            if(!empty($jsondata)){
+
+                $tweets = array();
+                $tweetids = array();
+                foreach ($jsondata as $tweet) {
+                    // echo $tweet->text.'<br>';
+                    if(!in_array($tweet->id, $tweetids)){
+                        $tweets[] = array(
+                            'userhandle' => htmlentities($tweet->from_user),
+                            'username' =>  htmlentities($tweet->from_user_name),
+                            'userid' => $tweet->from_user_id,
+                            'userpic' => $tweet->profile_image_url,
+                            'tweet' => htmlspecialchars(htmlentities($tweet->text)),
+                            'tweetid' => $tweet->id,
+                            'tweetlocation' => 'null',
+                            'tweettime' => strtotime($tweet->created_at),
+                            'searchtopic' => 'zesco'
+                        );
+                    }
+                    $tweetids[] = $tweet->id;
+                }
+            }else{
+                $tweets = false;
+            }
+        }
 
         echo sizeof($tweets);
         echo 'exiting importer';
