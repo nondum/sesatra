@@ -26,8 +26,6 @@ class Frontend_Twitline_Controller extends Base_Controller
     public function get_view($needle = 'zesco'){
     	// get tweets from database
         // TODO:: request time based tweets (last hour, last day)
-        // var_dump(time() - ($this->periods['week']) );
-        // var_dump(time() - (time() - ($this->periods['week']) ) );
     	$this->data[$this->views] = Tweet::where('searchtopic', '=', $needle)->order_by('tweettime','desc')->take(50)->paginate();
         foreach ($this->periods as $k => $v) {
             $counts[$k] = $this->count_last($v);
