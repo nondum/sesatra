@@ -58,7 +58,7 @@
         <footer>
             <p>Conceived by <a href="http://twitter.com/twoseats">@twoSeats</a></p>
             <p>Built using <a href="http://twitter.com/twoseats">@laravelphp</a> &amp; <a href="http://twitter.com/twoseats">@twbootstrap</a></p>
-            <p>Check out Se-Sa-Tra on <a href="http://github.com">GitHub</a></p>
+            <p>Check out Se-Sa-Tra on <a href="http://github.com/SoliloquyLabs/sesatra">GitHub</a></p>
             <br><p><small>read the {{ HTML::link('fineprint', 'fine print') }}</small></p>
         </footer>
     </div> <!-- /container -->
