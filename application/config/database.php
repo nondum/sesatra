@@ -42,7 +42,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'development',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -64,6 +64,16 @@ return array(
 		'sqlite' => array(
 			'driver'   => 'sqlite',
 			'database' => 'application',
+			'prefix'   => '',
+		),
+
+		'development' => array(
+			'driver'   => 'mysql',
+			'host'     => 'localhost',
+			'database' => 'sesatra',
+			'username' => 'root',
+			'password' => '',
+			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
 

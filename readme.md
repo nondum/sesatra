@@ -10,6 +10,10 @@ modify the files config/application.php & config/database.php to reflect your ow
 
 launch a command/terminal window in the root of your installation and run the below commands.
 
+- php artisan key:generate
+
+- php artisan migrate:install
+
 - php artisan migration
 
 - php artisan migration twitsearch
