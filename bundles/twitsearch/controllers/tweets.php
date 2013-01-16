@@ -29,13 +29,13 @@ class Twitsearch_tweets_Controller extends Controller
         file_put_contents('results'.date('Y-m-d H_i_s').'.json', $save);
 
         if($results){
-            $this->get_populate($results);
+            $this->get_populate($results, $q);
         }
     }
 
-    public function get_populate($data = false){
+    public function get_populate($data = false, $query){
         //import tweets from json files
-        $tweets = Importer::runTweetImport($data);
+        $tweets = Importer::runTweetImport($data, $query);
         /*var_dump($tweets[10]);
         var_dump($tweets[11]);
         var_dump($tweets[12]);*/

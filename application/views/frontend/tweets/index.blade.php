@@ -45,9 +45,12 @@
 			        <p>{{ $twt->tweettime }}</p>
 		    	</div>
 		    	<div class="tweet_text">
-		    		<a href="http://twitter.com{{ $twt->username }}">
+		    		<a href="http://twitter.com/{{ $twt->username }}">
 			        	<img src="{{ $twt->userpic }}">
-			        	<span><strong>{{ $twt->username }}</strong></span>  <span class="tweet_screen_name"><small>@{{ $twt->userhandle }}</small></span>
+			        	<span><strong>{{$twt->username}}</strong></span>
+			        </a>
+		    		<a href="http://twitter.com/{{ $twt->username }}">
+			        	<span class="tweet_screen_name"><small>@{{ $twt->userhandle }}</small></span>
 			        </a>
 		        	<p>{{ $twt->tweet }}</p>
 		    	</div>
