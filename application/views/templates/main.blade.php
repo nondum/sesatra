@@ -71,6 +71,7 @@
 		<script src="{{ asset('js/jquery-1.8.1.min.js') }}"></script>
 		<script src="{{ asset('js/jquery-ui-custom.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.js') }}"></script>
+		<script src="{{ asset('js/implements.js') }}"></script>
 	@yield_section
 
 	@yield('scripts')
