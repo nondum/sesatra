@@ -16,6 +16,11 @@ class Twitsearch_tweets_Controller extends Controller
 
     public function get_run($q = 'zesco'){
     	//get latest tweets from twi'er
+        
+        //first check that the query being fed is valid
+        $q = $this->checkQuery($q);
+
+        //talk to YQL
         $yqlQuery = 'SELECT * FROM twitter.search WHERE q=\''.$q.'\'';
         // http://developer.yahoo.com/yql/console/?q=SELECT%20*%20FROM%20twitter.search%20WHERE%20q%3D'zesco'&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
         $req = 'http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
@@ -62,6 +67,16 @@ class Twitsearch_tweets_Controller extends Controller
         if ($result === FAlSE)
             throw new Exception("Database entry failed. A problem was experienced.");
         return true;
+    }
+    private function checkQuery($q){
+        // ZESCO, Zanaco, I-connect,Barclays bank,MTN Zambia, Airtel zambia
+        $q = str_replace('-', ' ', (strtolower($q)));
+        $validQueries = array('zesco', 'zanaco', 'mtn zambia', 'airtel zambia', 'barclays zambia', 'fnb zambia', 'zamtel');
+        if(in_array($q, $validQueries)){
+            return $q;
+        }else{
+            return 'zesco';
+        }
     }
 
 }

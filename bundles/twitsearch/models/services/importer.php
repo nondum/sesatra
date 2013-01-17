@@ -79,7 +79,7 @@ class Importer{
                             'tweetid' => $tweet->id,
                             'tweetlocation' => 'null',
                             'tweettime' => strtotime($tweet->created_at),
-                            'searchtopic' => $query
+                            'searchtopic' => str_replace(' ', '-', $query)
                         );
                     }
                     $tweetids[] = $tweet->id;
