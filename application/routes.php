@@ -36,6 +36,7 @@ Route::any('/', 'frontend.home@index');
 Route::any('fineprint', 'frontend.home@fine_print');
 
 Route::any('view', array('uses' => 'frontend.twitline@view'));
+Route::any('view/all', array('uses' => 'frontend.twitline@viewAll'));
 
 /*
 |--------------------------------------------------------------------------

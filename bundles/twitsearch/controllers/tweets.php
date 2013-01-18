@@ -7,15 +7,17 @@ class Twitsearch_tweets_Controller extends Controller
 
     public $restful = true;
     public $views = 'tweets';
+        
+    private $validQueries = array('zesco', 'zanaco', 'mtn zambia', 'airtel zambia', 'barclays zambia', 'fnb zambia', 'zamtel', 'kafubu');
 
     public function get_index()
     {
-    	$this->data[$this->views] = User::order_by('id','asc')->get();
+        $this->data[$this->views] = User::order_by('id','asc')->get();
         return View::make('admin.'.$this->views.'.index',$this->data);
     }
 
     public function get_run($q = 'zesco'){
-    	//get latest tweets from twi'er
+        //get latest tweets from twi'er
         
         //first check that the query being fed is valid
         $q = $this->checkQuery($q);
@@ -71,11 +73,10 @@ class Twitsearch_tweets_Controller extends Controller
     private function checkQuery($q){
         // ZESCO, Zanaco, I-connect,Barclays bank,MTN Zambia, Airtel zambia
         $q = str_replace('-', ' ', (strtolower($q)));
-        $validQueries = array('zesco', 'zanaco', 'mtn zambia', 'airtel zambia', 'barclays zambia', 'fnb zambia', 'zamtel');
-        if(in_array($q, $validQueries)){
+        if(in_array($q, $this->validQueries)){
             return $q;
         }else{
-            return 'zesco';
+            return $this->validQueries[0];
         }
     }
 
