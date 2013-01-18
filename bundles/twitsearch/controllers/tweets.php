@@ -1,6 +1,7 @@
 <?php
 use Twitsearch\Model\Services\Importer,
-    Twitsearch\Model\Datamation\Tweet;
+    Twitsearch\Model\Datamation\Tweet,
+    Twitsearch\Model\Datamation\Topic;
 
 class Twitsearch_tweets_Controller extends Controller
 {
@@ -8,13 +9,16 @@ class Twitsearch_tweets_Controller extends Controller
     public $restful = true;
     public $views = 'tweets';
         
-    private $validQueries = array('zesco', 'zanaco', 'mtn zambia', 'airtel zambia', 'barclays zambia', 'fnb zambia', 'zamtel', 'kafubu');
+    private $validQueries = array();
 
-    public function get_index()
-    {
-        $this->data[$this->views] = User::order_by('id','asc')->get();
-        return View::make('admin.'.$this->views.'.index',$this->data);
+    function __construct(){
+        $topics = Topic::all();
+        
+        foreach($topics as $topic){
+            $this->validQueries[] = $topic->query;
+        }
     }
+    function __destruct(){}
 
     public function get_run($q = 'zesco'){
         //get latest tweets from twi'er
@@ -22,11 +26,13 @@ class Twitsearch_tweets_Controller extends Controller
         //first check that the query being fed is valid
         $q = $this->checkQuery($q);
 
-        //talk to YQL
+        // prep YQL query
         $yqlQuery = 'SELECT * FROM twitter.search WHERE q=\''.$q.'\'';
-        // http://developer.yahoo.com/yql/console/?q=SELECT%20*%20FROM%20twitter.search%20WHERE%20q%3D'zesco'&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys
+        
+        //talk to YQL
         $req = 'http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
         echo $req;
+
         $results = json_decode(file_get_contents('http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'))->query->results->results;
 
         var_dump($results[0]);
@@ -39,13 +45,54 @@ class Twitsearch_tweets_Controller extends Controller
             $this->get_populate($results, $q);
         }
     }
+    public function get_runAll(){
+        //batch get latest tweets from twi'er
+        foreach ($this->validQueries as $q) {
+
+            $q = $this->checkQuery($q);
+
+            // prep YQL query
+            $yqlQuery = 'SELECT * FROM twitter.search WHERE q=\''.$q.'\'';
+            
+            //talk to YQL
+            $req = 'http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+            echo $req;
+            try{
+                $results = file_get_contents('http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys');
+
+                $results = json_decode($results);
+                
+                // in the case that yql returns null the null value is at this point...
+                $var = $results->query;
+
+                // check that yql query didn't return null
+                if($var->results != null){
+                    // try to retrieve yql data, else catch exception....
+                    try{$results = $results->query->results->results;}
+                    catch(Exception $e){var_dump($results); var_dump($e);}
+
+                    // print a single result from queries
+                    var_dump($results[0]);
+                    
+                    // save output to a file...
+                    // this data is saved as jsondata
+                    $save = json_encode($results);
+                    file_put_contents('results'.date('Y-m-d H_i_s').'.json', $save);
+
+                    // save data to database
+                    $this->get_populate($results, $q); 
+                }
+            }catch(Exception $e){
+                echo '<br>something bad happened....(query failed)<br>';
+                var_dump($e);
+            }
+        }
+    }
 
     public function get_populate($data = false, $query){
         //import tweets from json files
         $tweets = Importer::runTweetImport($data, $query);
-        /*var_dump($tweets[10]);
-        var_dump($tweets[11]);
-        var_dump($tweets[12]);*/
+
         if($tweets != false){
             foreach ($tweets as $tweet) {
                 $twt = new Tweet($tweet);
@@ -71,7 +118,6 @@ class Twitsearch_tweets_Controller extends Controller
         return true;
     }
     private function checkQuery($q){
-        // ZESCO, Zanaco, I-connect,Barclays bank,MTN Zambia, Airtel zambia
         $q = str_replace('-', ' ', (strtolower($q)));
         if(in_array($q, $this->validQueries)){
             return $q;
