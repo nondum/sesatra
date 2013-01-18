@@ -2,6 +2,6 @@
 
 return array(
 
-    'driver' => 'memcached',
+    'driver' => 'file',
 
 );
