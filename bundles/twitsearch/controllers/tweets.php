@@ -3,7 +3,7 @@ use Twitsearch\Model\Services\Importer,
     Twitsearch\Model\Datamation\Tweet,
     Twitsearch\Model\Datamation\Topic;
 
-class Twitsearch_tweets_Controller extends Controller
+class Twitsearch_Tweets_Controller extends Controller
 {
 
     public $restful = true;
