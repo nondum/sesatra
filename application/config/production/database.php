@@ -7,9 +7,9 @@ return array(
         'production' => array(
             'driver'   => 'mysql',
             'host'     => 'localhost',
-            'database' => $_SERVER['THADBCONN'],
-            'username' => $_SERVER['THADBUSER'],
-            'password' => $_SERVER['THADRAGON'],
+            'database' => $_ENV['THADBCONN'],
+            'username' => $_ENV['THADBUSER'],
+            'password' => $_ENV['THADRAGON'],
             'charset'  => 'utf8',
             'prefix'   => '',
         ),
