@@ -97,10 +97,10 @@ class Twitsearch_Tweets_Controller extends Controller
             foreach ($tweets as $tweet) {
                 $twt = new Tweet($tweet);
                 $exists = Tweet::where('tweetid', '=', $tweet['tweetid'])->first();
-                var_dump($exists);
+                // var_dump($exists);
                 if($exists == null){
                     $twt->save();
-                    var_dump($tweet);
+                    // var_dump($tweet);
                 }else{
                     echo 'skipped tweet import<br>';
                 }
@@ -111,7 +111,7 @@ class Twitsearch_Tweets_Controller extends Controller
     }
 
     private function addTweetsToDB($tweets){
-        var_dump($tweets);
+        // var_dump($tweets);
         $result = Tweet::insert($tweets);
         if ($result === FAlSE)
             throw new Exception("Database entry failed. A problem was experienced.");
