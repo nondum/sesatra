@@ -71,7 +71,7 @@ class Twitsearch_Tweets_Controller extends Controller
                     try{$results = $results->query->results->results;}
                     catch(Exception $e){
                         // var_dump($results);
-                        var_dump($e);
+                        // var_dump($e);
                     }
 
                     // print a single result from queries

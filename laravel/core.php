@@ -212,8 +212,8 @@ if (isset($environment))
 | array of options in the $_SERVER global array for convenience.
 |
 */
-
-if (defined('STDIN'))
+// if (defined('STDIN'))
+if (defined('STDIN') || (substr(PHP_SAPI, 0, 3) == 'cgi' && getenv('TERM')))
 {
 	$console = CLI\Command::options($_SERVER['argv']);
 
