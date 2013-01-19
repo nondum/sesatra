@@ -1,4 +1,4 @@
-# [Se-Sa-Tra](http://sesatra.org ?? ) - Service Satisfaction Tracker
+# [Se-Sa-Tra](http://sesatra.com) - Service Satisfaction Tracker
 
 Sesatra is an open project with the purpose of tracking the sentiments of consumers of major services.
 The project was started with Zambia as the casestudy, due to the high level of disatisfaction from consumers of the services from major providers of the most basic services eg: ZESCO (Zambia Electricity Supply Corperation), and a prevalent poor understanding of what consumer rights individuals have.
