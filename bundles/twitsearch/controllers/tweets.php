@@ -31,12 +31,12 @@ class Twitsearch_Tweets_Controller extends Controller
         
         //talk to YQL
         $req = 'http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
-        echo $req;
+        // echo $req;
 
         $results = json_decode(file_get_contents('http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'))->query->results->results;
 
-        var_dump($results[0]);
-        var_dump($results);
+        // var_dump($results[0]);
+        // var_dump($results);
         
         $save = json_encode($results);
         file_put_contents('results'.date('Y-m-d H_i_s').'.json', $save);
@@ -56,7 +56,7 @@ class Twitsearch_Tweets_Controller extends Controller
             
             //talk to YQL
             $req = 'http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
-            echo $req;
+            // echo $req;
             try{
                 $results = file_get_contents('http://query.yahooapis.com/v1/public/yql?q='.urlencode($yqlQuery).'&format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys');
 
@@ -69,15 +69,18 @@ class Twitsearch_Tweets_Controller extends Controller
                 if($var->results != null){
                     // try to retrieve yql data, else catch exception....
                     try{$results = $results->query->results->results;}
-                    catch(Exception $e){var_dump($results); var_dump($e);}
+                    catch(Exception $e){
+                        // var_dump($results);
+                        var_dump($e);
+                    }
 
                     // print a single result from queries
-                    var_dump($results[0]);
+                    // var_dump($results[0]);
                     
                     // save output to a file...
                     // this data is saved as jsondata
                     $save = json_encode($results);
-                    file_put_contents('results'.date('Y-m-d H_i_s').'.json', $save);
+                    // file_put_contents('results'.date('Y-m-d H_i_s').'.json', $save);
 
                     // save data to database
                     $this->get_populate($results, $q); 
@@ -92,6 +95,7 @@ class Twitsearch_Tweets_Controller extends Controller
     public function get_populate($data = false, $query){
         //import tweets from json files
         $tweets = Importer::runTweetImport($data, $query);
+        $count1 = $count2 = 0;
 
         if($tweets != false){
             foreach ($tweets as $tweet) {
@@ -100,14 +104,17 @@ class Twitsearch_Tweets_Controller extends Controller
                 // var_dump($exists);
                 if($exists == null){
                     $twt->save();
+                    $count1++;
                     // var_dump($tweet);
                 }else{
-                    echo 'skipped tweet import<br>';
+                    $count2++;
+                    // echo 'skipped tweet import<br>';
                 }
             }
         }else{
             echo 'no tweets were available for processing';
         }
+        echo 'Process completed<br>'.$count1.' rows added to database<br>'.$count2.' rows skipped.';
     }
 
     private function addTweetsToDB($tweets){

@@ -90,7 +90,7 @@ class Importer{
         }
 
         echo sizeof($tweets);
-        echo 'exiting importer';
+        echo 'exiting importer<br>';
         // var_dump($tweets);
 
         return $tweets;
