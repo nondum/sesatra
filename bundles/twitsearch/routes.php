@@ -1,12 +1,9 @@
 <?php
 
-Route::get('(:bundle)', function()
-{
-    return 'Welcome to the Admin bundle!';
-});
-Route::get('(:bundle)/run', 'twitsearch::tweets@run');
-Route::get('(:bundle)/populate', 'twitsearch::tweets@populate');
-// Route::post('(:bundle)/preview', 'gravvy::preview@preview');
+// Route::get('(:bundle)/run', 'twitsearch::tweets@run');
+// Route::get('(:bundle)/runall', 'twitsearch::tweets@runAll');
+// Route::get('(:bundle)/run/(:any)', 'twitsearch::tweets@run');
+// Route::get('(:bundle)/populate', 'twitsearch::tweets@populate');
 
 /*
 |--------------------------------------------------------------------------

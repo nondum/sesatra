@@ -20,7 +20,7 @@ class Twitsearch_Tweets {
 			$table->string('userid', 128);
 			$table->string('userpic');
 			$table->string('tweet', 141);
-			$table->string('tweetid', 128)->unique();;
+			$table->string('tweetid', 128)->unique();
 			$table->string('tweetlocation');
 			$table->integer('tweettime');
 
@@ -29,6 +29,28 @@ class Twitsearch_Tweets {
 			$table->timestamps();
 			$table->index('id');
 		});
+
+		Schema::table('topics', function($table)
+		{
+			$table->engine = 'InnoDB';
+			$table->create();
+			$table->increments('id');
+			$table->string('topicname', 30);
+			$table->string('query', 20);
+			// created_at | updated_at DATETIME
+			$table->timestamps();
+			$table->index('id');
+		});
+
+		// seed topics table
+    	$validQueries = array('zesco', 'zanaco', 'mtn zambia', 'airtel zambia', 'barclays zambia', 'fnb zambia', 'zamtel', 'kafubu');
+
+    	foreach ($validQueries as $q) {
+    		DB::table('topics')->insert(array('topicname' => $q, 'query' => $q));
+    	}
+
+
+
 	}
 
 	/**
@@ -39,7 +61,8 @@ class Twitsearch_Tweets {
 	public function down()
 	{
 		//
-		$Schema::drop('tweets');
+		Schema::drop('tweets');
+		Schema::drop('topics');
 
 	}
 

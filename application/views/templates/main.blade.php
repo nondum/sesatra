@@ -56,6 +56,7 @@
         
 		<hr>
         <footer>
+            <p>Follow the project on Twitter <a href="http://twitter.com/sesatraproject">@SesatraProject</a></p>
             <p>Conceived by <a href="http://twitter.com/twoseats">@twoSeats</a></p>
             <p>Built using <a href="http://twitter.com/laravelphp">@laravelphp</a> &amp; <a href="http://twitter.com/twbootstrap">@twbootstrap</a></p>
             <p>Check out Se-Sa-Tra on <a href="http://github.com/SoliloquyLabs/sesatra">GitHub</a></p>
@@ -71,6 +72,7 @@
 		<script src="{{ asset('js/jquery-1.8.1.min.js') }}"></script>
 		<script src="{{ asset('js/jquery-ui-custom.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.js') }}"></script>
+		<script src="{{ asset('js/implements.js') }}"></script>
 	@yield_section
 
 	@yield('scripts')

@@ -4,7 +4,7 @@ use \Eloquent;
 
 class Importer{
 
-    public static function runTweetImport($data = false){
+    public static function runTweetImport($data = false, $query){
     
         $jsondata = array();
 
@@ -55,7 +55,7 @@ class Importer{
                             'tweetid' => $tweet->id,
                             'tweetlocation' => 'null',
                             'tweettime' => strtotime($tweet->created_at),
-                            'searchtopic' => 'zesco'
+                            'searchtopic' => $query
                         );
                     }
                     $tweetids[] = $tweet->id;
@@ -79,7 +79,7 @@ class Importer{
                             'tweetid' => $tweet->id,
                             'tweetlocation' => 'null',
                             'tweettime' => strtotime($tweet->created_at),
-                            'searchtopic' => 'zesco'
+                            'searchtopic' => str_replace(' ', '-', $query)
                         );
                     }
                     $tweetids[] = $tweet->id;
@@ -90,7 +90,7 @@ class Importer{
         }
 
         echo sizeof($tweets);
-        echo 'exiting importer';
+        echo 'exiting importer<br>';
         // var_dump($tweets);
 
         return $tweets;
