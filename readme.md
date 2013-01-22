@@ -16,7 +16,7 @@ launch a command/terminal window in the root of your installation and run the be
 
 - php artisan migration
 
-- php artisan migration twitsearch (this isn't neccessary unless the twitsearch bundle has been disabled)
+- php artisan twitsearch::fetch 
 
 (instructions for using the Laravel Arisan CLI can be found [here](http://laravel.com/docs/artisan/commands))
 
