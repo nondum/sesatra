@@ -52,5 +52,5 @@ class Tweet extends Eloquent {
           if ($breakdown == '0') { break; }
       }
       return ''.$retval.'';      
-  }
+	}
 }
