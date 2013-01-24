@@ -1,22 +1,11 @@
 <?php
-class Frontend_Twitline_Controller extends Base_Controller
+class Frontend_Twitline_Controller extends Tweetdata_Controller
 {
 
     public $restful = true;
     public $views = 'tweets';
 
     public $items_per_page = 15;
-
-    public $periods = array(
-            /*'decade' => 315360000,
-            'year' => 31536000,*/
-            'month' => 2628000,
-            'week' => 604800, 
-            'day' => 86400,
-            'hour' => 3600,
-            /*'minute' => 60,
-            'second' => 1*/
-            );
 
     public function get_index()
     {
@@ -46,13 +35,4 @@ class Frontend_Twitline_Controller extends Base_Controller
         return View::make('frontend.'.$this->views.'.index',$this->data);
         // return var_dump($this->data['tweets']->results);
     }
-
-    // ######********
-    // TODO: add constraint to only count the relevant tweet topic.
-    // ######******** IMPORTANT!
-    private function count_last($duration){
-        $oldesttime = time() - ($duration);
-        return Tweet::where('tweettime','>',$oldesttime)->count();
-    }
-
 }
